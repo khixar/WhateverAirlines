@@ -1,0 +1,61 @@
+<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="background-color: green;">Description</td>
+                    <td style="background-color: orange;">Location</td>
+                    <td style="background-color: red;">Image</td>
+                    <td style="background-color: yellow;">Video</td>
+                    <td style="background-color: brown;">Add a Comment</td>
+                </tr>
+            </thead>
+            <tbody>
+            
+                
+                <% @all_users.each do |user| %>
+                    <% if user.permission.to_i == 1 %>
+                        <h3 style="color: green;"><%= user.name %> </h3>
+                        <% user.tourists.each do |poster| %>
+                            <tr>
+                                <td> <%= poster.description %>&nbsp&nbsp </td>
+                                <td> <%= poster.location %>&nbsp&nbsp </td>
+                                <td> <%= image_tag poster.image.medium.url %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>
+                                <td> <%= video_tag poster.video_url.to_s, :controls =>true %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                                <tr>
+                                    <% poster.comments.each do |comm| %>
+                                        <tr><td><%= comm.comment %></td></tr>
+                                    <% end %>
+                            </tr>
+                            
+                            <%= form_tag(create_path(:tourist_id => poster.id), method: 'post') do %>
+                                <tr><%= poster.id %></tr>    
+    					        <tr> <td><%= label_tag(:comment) %></td> </tr>
+    					        <td><%= text_field_tag(:comment, params[:comment]) %></td>
+    				            <td><%= submit_tag("Comment") %></td>
+            			    <% end %>
+                        <% end %>
+                    <% else %>    
+                        <% user.tourists.each do |poster| %>
+                            <tr>
+                                <td> <%= poster.description %>&nbsp&nbsp </td>
+                                <td> <%= poster.location %>&nbsp&nbsp </td>
+                                <td> <%= image_tag poster.image.medium.url %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>
+                                <td> <%= video_tag poster.video_url.to_s, :controls =>true %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                                <tr>
+                                    <% poster.comments.each do |comm| %>
+                                        <tr><td><%= comm.comment %></td></tr>
+                                    <% end %>
+                            </tr>
+                            
+                            <%= form_tag(create_path(:tourist_id => poster.id), method: 'post') do %>
+                                <tr><%= poster.id %></tr>    
+    					        <tr> <td><%= label_tag(:comment) %></td> </tr>
+    					        <td><%= text_field_tag(:comment, params[:comment]) %></td>
+    				            <td><%= submit_tag("Comment") %></td>
+            			    <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                
+            </tbody>
+        </table>
+        

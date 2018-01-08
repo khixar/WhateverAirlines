@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show Flights</title>
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 20vw;
+    float: right;
+}
+
+
+
+	form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+		border-collapse: collapse;
+		color: white;
+    }
+    table, th, td{
+        border: 2px solid white;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+    th{
+    	color: white;
+    }
+	
+
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+
+<body>
+    
+    <table>
+        <thead>
+            <tr>
+                <td>Flights ID</td>
+                <td>Flights Seats</td>
+                <td>Flights Date</td>
+                <td>Source</td>
+                <td>Destination</td>
+                <td>Delete Flight</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% @flights.each do |flight| %>
+
+            <tr class="check">                
+                <td> <%= flight.id %> </td>
+                <td> <%= flight.total_seats %> </td>
+                <td> <%= flight.time_of_travel %> </td>
+                <td> <%= flight.source %> </td>
+                <td> <%= flight.destination %> </td>
+                <td>
+                    <%= link_to 'Delete', action: 'delete', id: flight.id, method: :delete, data: { confirm: "Are you sure?"}, :remote => true %>
+                </td>
+            </tr>
+
+            <% end %>
+
+        </tbody>
+
+    </table>
+
+    <div class="container-fluid">
+        <%= link_to 'Back', {action: 'new'}, :class => 'button' %>
+    </div>
+
+
+</body>
+

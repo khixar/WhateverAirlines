@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Seats</title>
+
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 20vw;
+    float: right;
+}
+
+	.custom_font{
+		font-size: 20px;
+		color: orange;
+	}
+
+
+	</style>
+
+</head>
+
+	<script>
+        function validateForm() 
+        {
+            var t1 = document.forms["myForm"]["total_fare1"].value;
+            var t2 = document.forms["myForm"]["total_fare2"].value;
+            var t3 = document.forms["myForm"]["total_fare3"].value;
+
+            if (t1 == '' || t2 == '' || t3 == '')
+            {            	
+                alert("All fields must be filled out");
+                return false;
+            }
+
+            if (t1 % 1 === 0 || t2 % 1 === 0 || t3 % 1 === 0)
+            {
+            	if (t1 > 0 && t2 > 0 && t3 > 0)
+            	{
+            		flag = true;
+            	}		             	
+	            else
+	                flag = false;   
+            }
+
+            if (flag == false)
+            {
+                alert("Fare Must be a Positive Integer");
+                return false;
+            }
+        }
+
+    </script>
+
+
+<body>
+
+	<div class="container">
+
+		<h1 class="well">Update Seats Information</h1>
+		<br>
+
+		<!--
+
+		<div>
+	        <%= form_tag(airline_manager_update_path, :method => 'post') do %>
+	            <table class="table table-bordered" style="color: white; padding: 2%; background-color:green; border-color: green;">	                
+	                <tr>
+	                	<td><%= label_tag(:Flight_id) %></td>
+	                    <td><%= @req_flight.id %></td>
+	                    <%= hidden_field_tag :name, @req_flight.id %>
+	                </tr>
+	                <tr>
+	                	<td><%= label_tag(:Source) %></td>
+	                    <td><%= @req_flight.source %></td>
+	                </tr>
+	                <tr>
+	                	<td><%= label_tag(:Destination) %></td>
+	                    <td><%= @req_flight.destination %></td>
+	                </tr>
+
+	                <% @req_flight.seats.each do |f| %>
+	                
+		                <tr> 
+		                	<td> <%= f.total_fare %> </td>
+                		</tr>
+	                <% end %>
+
+	                <h4>Update Prices</h4>
+	                <tr>
+		            	<td><%= text_field_tag(:total_fare1, params[:total_fare1]) %></td>
+		            </tr>           
+	                <tr>
+		            	<td><%= text_field_tag(:total_fare2, params[:total_fare2]) %></td>
+		            </tr>           
+	                <tr>
+		            	<td><%= text_field_tag(:total_fare3, params[:total_fare3]) %></td>
+		            </tr>           
+	                
+	                <tr>
+                    	<td style="float: left; color: green;"><%= submit_tag("Update Price") %></td>
+                	</tr>
+
+	            </table>
+	        <% end %>
+	    </div>
+
+		-->
+
+	    	<div>
+	            <table class="table table-bordered" style="color: white; padding: 2%; background-color:green; border-color: green;">
+	            	<thead>
+	            		<tr>
+	            			<td>Flight ID</td>
+	            			<td>Source</td>
+	            			<td>Destination</td>
+	            			<td>Current Economy Price</td>
+	            			<td>Current First Price</td>
+	            			<td>Current Business Price</td>
+	            		</tr>
+	            	</thead>
+
+	            	<tbody>
+
+	            		<td><%= @req_flight.id %></td>
+	                    <td><%= @req_flight.source %></td>
+	                    <td><%= @req_flight.destination %></td>
+		                <% @req_flight.seats.each do |f| %>		                
+			                	<td> <%= f.total_fare %> </td>	                		
+		                <% end %>
+	            	</tbody>
+	            </table>
+	        </div>
+
+			
+	        <hr>
+
+	        <h1 style="color: white; text-align: center;">Enter Updated Prices</h1>
+	        
+	        <hr>
+
+	        <%= form_tag(airline_manager_update_path, :method => 'post', :name => 'myForm') do %>
+	        	<div class="container" style="color: green;">
+
+	                    <%= hidden_field_tag :name, @req_flight.id %>
+
+	        			<%= label_tag 'Economy Price', nil, class: 'custom_font' %>
+	                	<%= text_field_tag(:total_fare1, params[:total_fare1]) %></td>
+	                	<%= label_tag 'First Price', nil, class: 'custom_font' %>
+		            	<%= text_field_tag(:total_fare2, params[:total_fare2]) %></td>
+		            	<%= label_tag 'Business Price', nil, class: 'custom_font' %>
+		            	<%= text_field_tag(:total_fare3, params[:total_fare3]) %></td>
+		            	<%= submit_tag "Update Price", :onclick => "return validateForm();" %>
+                </div>
+	        <% end %>
+	    </div>
+	</div>
+
+	<br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seats Information</title>
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 20vw;
+    float: right;
+}
+
+	form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+		border-collapse: collapse;
+		color: white;
+    }
+    table, th, td{
+        border: 2px solid white;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+    th{
+    	color: white;
+    }
+	
+
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var number = $("#Flight").val();
+            var source = $("#source").val();
+            var dest = $("#Destination").val();
+            var econ = $("#Economy").val();
+            var busi = $("#Business").val();
+            var first = $("#First").val();
+            var seats = $("#Total").val();
+            var time = $("#time").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + number + "</td><td>" + 
+            source + "</td> <td>" + dest + "</td> <td>" + econ + "</td> <td>" + busi + "</td> <td>" + first + "</td> <td>" + seats + "</td> <td>" + time + "</td></tr>";
+            $("table tbody").append(markup);
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+            	if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+	</script>
+
+
+
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h1 class="well">Update Seats Information</h1>
+		<br>
+
+<div>
+        <%= form_tag(flights_create_path, :method => 'post') do %>
+            <table style="color: green; padding: 2%;">
+                
+                <tr>
+                    <td><%= label_tag(:user_id) %></td>
+                    <td><%= text_field_tag(:user_id, params[:user_id]) %></td>
+                </tr>
+                <tr>
+                    <td><%= label_tag(:total_seats) %></td>
+                    <td><%= text_field_tag(:total_seats, params[:total_seats]) %></td>
+                </tr>
+                <tr>
+                    <td><%= label_tag(:time_of_travel) %></td>
+                    <td><%= date_field_tag(:time_of_travel, params[:time_of_travel]) %></td>
+                </tr>
+                <tr>
+                    <td><%= label_tag(:source) %></td>
+                    <td><%= text_field_tag(:source, params[:source]) %></td>
+                </tr>
+                <tr>
+                    <td><%= label_tag(:destination) %></td>
+                    <td><%= text_field_tag(:destination, params[:destination]) %></td>
+                </tr>
+                <tr>
+                    <td style="float: left;"><%= submit_tag("Create Flight") %></td>
+                </tr>
+            </table>
+
+
+        <% end %>
+    </div>
+
+
+
+
+	<form style="color: green; background-color: white;">
+    <br>
+        <input type="text" id="User_id" placeholder="User_id" style="margin-left: 5px;" >        
+        <input type="text" id="Flight" placeholder="Flight Number">
+        <input type="text" id="source" placeholder="Source">
+        <input type="text" id="Destination" placeholder="Destination">
+        <input type="text" id="Economy" placeholder="Economy Price">
+        <input type="text" id="Business" placeholder="Business Price">
+        <input type="text" id="First" placeholder="First Price" style="margin-left: 5px;">
+        <input type="text" id="Total" placeholder="Total Seats">
+        <input type="text" id="time" placeholder="Travel time">
+        <br>
+    	<input type="button" class="add-row" value="Add Row">
+    </form>
+
+		<table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Flight Number</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Economy Price</th>
+                <th>Business Price</th>
+                <th>First Price</th>
+                <th>Total Seats</th>
+                <th>Travel time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="record"></td>
+                <td>leh-2233</td>
+				<td>Lahore</td>
+				<td>Islamabad</td>
+				<td>10000</td>
+				<td>100001</td>
+				<td>100002</td>
+				<td>29999</td>
+				<td>12:12:12</td>
+            </tr>
+        </tbody>
+ 	    </table>
+    	<button type="button" class="delete-row">Delete Row</button>
+
+
+
+		<%= link_to "Update Seat Features", {:controller => 'airline_admin', :action => 'update'}, :class => 'button' %>
+
+	</div>
+
+</body>
+</html>

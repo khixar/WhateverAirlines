@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book a Flight</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+	<style>
+	body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 40vw
+}
+
+	.button-search{			
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    width: 16vw
+}
+
+	input[type=checkbox] {
+  transform: scale(2.0);
+}
+	input[type=text] {
+  	width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+select {
+  margin: 8px 0;
+  width: 30%;
+  padding: 12px 20px;
+  border: 2px solid red;
+}
+	</style>
+
+
+	<script>
+		function hide_elements()
+		{
+			//var button = document.getElementById('my_checkbox');
+			//button.onclick = function() 
+			//{
+	    		var div = document.getElementById('arriving');
+	    		var div1 = document.getElementById('hide2');
+	    		if (div.style.display != 'none' && div1.style.display != 'none')
+	    		{ 
+	        		div.style.display = 'none';
+	    			div1.style.display = 'none';
+	    		}
+	    		else
+	    		{	    			
+	    			div.style.display = 'inline-block';
+	    			div1.style.display = 'inline-block';
+	    		}		
+			//}
+		}
+	</script>
+
+	<script>
+        function validateForm() 
+        {
+            var de = document.forms["myForm"]["departure"].value;
+            var ar = document.forms["myForm"]["arrival"].value;
+            var st = document.forms["myForm"]["seat_type"].value;            
+            var dt = document.forms["myForm"]["date"].value;         
+            var pp = document.forms["myForm"]["passenger"].value;
+
+            var flag = false;
+            var flag1 = false;
+            //alert(y);
+            //alert(z);
+            //alert(typeof y);
+            if (de == "" || ar == "" || st == "" || dt == "" || pp == "")
+            {                
+                alert("All fields must be filled out");
+                return false;                
+            }
+
+            alert(st);
+
+            if (st == "economy" || st == "first" || st == "business")
+            {
+            	flag = true;
+            }
+            else
+            {
+            	alert("seat type is not correct");
+            	return false;
+            }
+
+            if (pp % 1 === 0)
+            {
+            	if (pp > 0)
+            	{
+                	flag = true;
+                }
+                else
+                	flag = false;
+            }
+
+            if (flag == false)
+            {
+                alert("Total Passengers Must be a Positive Integer");
+                return false;
+            }
+
+        }
+    </script>
+
+
+
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	    	<%= link_to "WhereEver Airlines", {:action => 'home'}, :class => "navbar-brand" %>
+	    </div>
+	   	<ul class="nav navbar-nav"> 
+	      <li>
+	      	<%= link_to "Home", {:action => 'home'} %>
+	      </li>
+	      
+	      <!--
+	      <li>
+	      	<%= link_to "AdminPortal", {:controller => 'airline_admin', :action => 'index'} %>
+	      </li>
+	      <li>		      	
+	      	<%= link_to "ManagerPortal", {:controller => 'airline_manager', :action => 'index'} %>
+		  </li>		  
+	      <li>
+	      	<a href="/airline_admin/index">AdminCheck</a>
+	      </li>
+	      -->
+	      <li class="active">
+	      	<%= link_to "Book a Flight", {:action => 'book'} %>
+	      </li>
+	      <ul class="nav navbar-nav navbar-right">
+      		<li style="left: 200%"><a href="/airline_manager/index"><span class="glyphicon glyphicon-log-in"></span> Login Manager</a></li>
+      		<li style="left: 200%"><a href="/airline_admin/index"><span class="glyphicon glyphicon-log-in"></span> Login Admin</a></li>
+    	  </ul>
+
+	     </ul>  
+	  </div>
+	</nav>
+
+	<br><br><br>
+
+	<h1 class="well" style="color: white; text-align: center; background-color: indigo;">Start your Journey here</h1>
+
+<!--
+
+<%= form_tag(static_pages_search_path, :method => 'post') do %>
+
+	<div style="color: orange; text-align: center;background-color: green;">
+	<table class="table table-bordered">
+		<tr>
+			<td><%= label_tag(:departure) %></td>
+			<td><%= text_field_tag(:departure, params[:departure]) %></td>
+		</tr>			
+		<tr>
+			<td><%= label_tag(:arrival) %></td>
+			<td><%= text_field_tag(:arrival, params[:arrival]) %></td>
+		</tr>			<br>
+		<tr>
+			<td><%= label_tag(:seat_type) %></td>
+			<td><%= text_field_tag(:seat_type, params[:seat_type]) %></td>
+		</tr>			
+		<tr>
+			<td><%= label_tag(:date) %></td>
+			<td><%= date_field_tag(:date, params[:date]) %></td>
+		</tr>
+		<tr>
+			<td><%= label_tag(:Passengers) %></td>
+			<td><%= text_field_tag(:passenger, params[:passenger]) %></td>
+		</tr>
+
+		<tr><td><%= submit_tag("Search") %></td></tr>
+	</table>		
+
+	</div>
+
+<% end %>
+
+-->
+
+<br>
+
+<%= form_tag(static_pages_search_path, :method => 'post', :name => 'myForm') do %>
+
+	<div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+            <label for="tab-1" class="tab">Search Flight
+            </label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab" style="visibility: hidden;">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <div class="group">             
+                        <%= label_tag :departure, :departure, :class => "label" %>
+						<%= text_field_tag :departure, params[:departure].try(:html_safe), :class => "input" %>
+                    </div>
+                    <div class="group">     
+						<%= label_tag :arrival, :arrival, :class => "label" %>
+						<td><%= text_field_tag :arrival, params[:arrival].try(:html_safe), :class => "input" %></td>
+                    </div>
+                    <div class="group">     
+						<td><%= label_tag :seat_type, :seat_type, :class => "label" %></td>
+						<td><%= text_field_tag :seat_type, params[:seat_type].try(:html_safe), :class => "input" %></td>
+                    </div>
+                    <div class="group">     
+						<td><%= label_tag :date, :date, :class => "label" %></td>
+						<td><%= date_field_tag :date, params[:date].try(:html_safe), :class => "input" %></td>
+                    </div>
+
+                    <div class="group">     
+						<td><%= label_tag :Total_Seats, :Total_Seats, :class => "label" %></td>
+						<td><%= text_field_tag :passenger, params[:passenger].try(:html_safe), :class => "input" %></td>
+                    </div>
+
+                    <div class="group" style="text-align: center;">
+                        <%= submit_tag "Search", :onclick => "return validateForm();" %>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% end %>
+
+
+
+<!--
+
+
+
+
+
+
+
+	<h1 class="well" style="color: green; text-align: center;">Start your Journey here</h1>
+
+
+	<h2 class="well" style="color: green; display: inline-block; margin-left: 41vw">Book a Flight</h1>
+
+	<div class="container">
+		<button class="button">Return &nbsp 
+			<input type="checkbox" name="mycheck" style="font-size: 30px">
+		</button>
+
+		<button class="button" id="my_checkbox" style="color:white; float: right;">One Way &nbsp
+			<input type="checkbox" onclick="hide_elements()" name="mycheck" style="font-size: 30px;">
+		</button>
+
+		<br><br>
+
+		<input type="text" name="departure" placeholder="departure airport" style="border: 2px solid red;">
+		&nbsp &nbsp &nbsp &nbsp
+		<input type="date" name="departure_date" placeholder="departing" style="width: 30%; padding: 5px 20px; box-sizing: border-box; border: 2px solid red">
+		&nbsp &nbsp &nbsp &nbsp
+		<select>
+		  <option value="volvo" style="color: white">Economy Class</option>
+		  <option value="saab">Business Class</option>
+		  <option value="mercedes">First Class</option>
+		</select>
+		<br>
+
+		<div id="hidethis">
+
+			<input type="text" name="arrival" placeholder="arrival airport" style="border: 2px solid red;">
+			&nbsp &nbsp &nbsp &nbsp
+			<input type="date" id="arriving" name="arriving_date" placeholder="arriving" style="width: 30%; padding: 5px 20px; box-sizing: border-box; border: 2px solid red;">
+
+			&nbsp &nbsp &nbsp &nbsp
+			<select id="hide2">
+			  <option value="volvo">Economy Class</option>
+			  <option value="saab">Business Class</option>
+			  <option value="mercedes">First Class</option>
+			</select>
+		
+		</div>
+		<br>
+
+		<div>
+			<h3 style="color: white;">Passengers &nbsp<span class="glyphicon glyphicon-question-sign"></span></h3>
+			<hr>
+			<select>
+				<option value="ad1">Adult: 1</option>
+				<option value="ad2">Adult: 2</option>
+			  	<option value="ad3">Adult: 3</option>
+				<option value="ad4">Adult: 4</option>
+				<option value="ad5">Adult: 5</option>
+			  	<option value="ad6">Adult: 6</option>
+				<option value="ad7">Adult: 7</option>
+				<option value="ad8">Adult: 8</option>
+			  	<option value="ad9">Adult: 9</option>			
+			</select>
+				&nbsp &nbsp &nbsp &nbsp
+			<select>
+				<option value="cad0">Children: 0</option>
+				<option value="cad1">Children: 1</option>
+				<option value="cad2">Children: 2</option>
+			  	<option value="cad3">Children: 3</option>
+				<option value="cad4">Children: 4</option>
+				<option value="cad5">Children: 5</option>
+			  	<option value="cad6">Children: 6</option>
+				<option value="cad7">Children: 7</option>
+				<option value="cad8">Children: 8</option>
+			  	<option value="cad9">Children: 9</option>			
+			</select>
+				&nbsp &nbsp &nbsp &nbsp
+			<select>
+				<option value="qad0">Infant: 0</option>
+				<option value="qad1">Infant: 1</option>
+				<option value="qad2">Infant: 2</option>			
+			</select>
+
+		</div>
+
+		<hr>
+
+			
+		<%= link_to 'Search',{:action => 'search'}, :class => 'button-search' %>
+		<span class="glyphicon glyphicon-search"></span>
+		
+	</div>
+-->
+
+</body>
+</html>

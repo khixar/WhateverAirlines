@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+
+	<style>
+			body {
+			    background-image: url("/image1.jpg");
+			}
+	</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	     <div class="navbar-header">
+	    	<%= link_to "WhereEver Airlines", {:action => 'home'}, :class => "navbar-brand" %>
+	    </div>
+	   	<ul class="nav navbar-nav"> 
+	      <li class="active">
+	      	<%= link_to "Home", {:action => 'home'} %>
+	      </li>
+	      
+	      <!--
+	      <li>
+	      	<%= link_to "AdminPortal", {:controller => 'airline_admin', :action => 'index'} %>
+	      </li>
+	      <li>		      	
+	      	<%= link_to "ManagerPortal", {:controller => 'airline_manager', :action => 'index'} %>
+		  </li>		  
+	      <li>
+	      	<a href="/airline_admin/index">AdminCheck</a>
+	      </li>
+	      
+	      <li>
+	      	<%= link_to "Book a Flight", {:action => 'book'} %>
+	      </li> -->
+ 	      <ul class="nav navbar-nav navbar-right">
+      		<li style="left: 200%"><a href="/airline_manager/index"><span class="glyphicon glyphicon-log-in"></span> Login Manager</a></li>
+      		<li style="left: 220%"><a href="/airline_admin/index"><span class="glyphicon glyphicon-log-in"></span> Login Admin</a></li>
+    	  </ul>
+
+	     </ul>  
+	  </div>
+</nav>
+
+<div class="container">
+	<br><br><br><br>
+
+	<p style="color: white; font-size: 20px;">Contac Us!</p>
+
+
+	<img src="/contact.jpg" alt="contact" width="80%" height="40%" style="margin-left: 40px;">
+
+	<p style="color: white;">If you have queries you can contact us at <a href="#" style="font-size: 30px;">Whatever.@gmail.com</a> </p>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Itinerary</title>
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 20vw
+}
+
+	
+	</style>
+</head>
+<body>
+
+	<div class="container">
+
+		<h1 class="well">Review your Itinerary</h1>
+		<br><br><br><br>
+		
+
+
+
+		<table class="table table-bordered" style="color: white;">
+			<tr>
+				<td>Depart</td>
+				<td style="background-color: green;"><%= @itin.source %></td>
+			</tr>
+			<tr>
+				<td>Arrive</td>
+				<td style="background-color: green;"><%= @itin.destination %></td>
+			</tr>
+			<tr>
+				<td>Flight Number</td>
+				<td style="background-color: green;"><%= @itin.id %></td>
+			</tr>
+			<tr>
+				<td>Seat Id</td>					
+				<td style="background-color: green;"><%= @seat.id %></td>
+			</tr>
+			<tr>
+				<td>Class</td>					
+				<td style="background-color: green;"><%= @seat.seat_type %></td>
+			</tr>
+			<tr>
+				<td>Total Fare</td>
+				<td style="background-color: green;"><%= @fare %></td>
+			</tr>
+			<tr>
+				<td>Flight Features</td>
+				<td style="background-color: green;">
+					<% @seat.features.each do |a| %>
+						<%= a.description %>,
+					<% end %>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+
+		<a href="/static_pages/info" class="button" style="float: right;">Continue</a>
+
+	</div>
+
+</body>
+</html>

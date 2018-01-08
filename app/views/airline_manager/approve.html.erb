@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Approve Seats Prices</title>
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+		.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 30vw;
+    float: right
+}
+	.button1 {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 30vw;
+    float: left
+}
+
+
+	</style>
+</head>
+<body>
+
+<br>
+
+<!--
+
+<div>
+	<% if flash[:notice] %>
+	    <div class="notice" style="color: white; font-size: 20px; text-align: center;"><%= flash[:notice] %></div>
+	<% end %>
+</div>
+
+-->
+
+
+	<div class="container">
+
+
+        <%= link_to 'Logout',airline_manager_destroy_path, :class => 'button' %>
+        <br><br>
+
+        <hr>
+
+        <h1 style="color: white;">Prices has been approved Succefully!</h1>
+
+        <br>
+
+        <h2 style="color: white;">Don't forget to Logout!</h2>
+
+        <hr>
+
+        <%= link_to 'Back',airline_manager_price_path, :class => 'button' %>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+    </div>
+</body>
+</html>

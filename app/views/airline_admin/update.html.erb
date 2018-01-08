@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seats Features</title>
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+		.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 30vw;
+    float: 50vw;
+}
+
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var feature = $("#feature").val();
+            var description = $("#description").val();
+
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + feature + "</td></tr>";
+            var selected_value = $("#my_val").val();
+            alert(selected_value);
+            if(selected_value == 'business')
+            {
+	            $("#busitable tbody").append(markup);
+	            $('#busitable').css('background-color','brown');            	
+            }
+
+            else if(selected_value == 'first')
+            {           	
+                $("#firsttable tbody").append(markup);
+	            $('#firsttable').css('background-color','brown');            	
+            }
+
+            else
+            {
+            	$("#econtable tbody").append(markup);
+            	$('#econtable').css('background-color','brown');
+            }
+        });
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+            	if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+
+    </script>
+
+
+</head>
+<body class="container">
+
+	<h1 class="well">Update Seats Feautres</h1>
+
+	<hr>
+
+	<form style="color: green; background-color: white">
+        <input type="text" id="feature" placeholder="Feautre" style="width: 20vw; height: 50px;">
+        <select style="width: 20vw; text-align: center; height: 50px;" id="my_val">
+        	<option value="econ">Economy</option>
+        	<option value="business">Business</option>
+        	<option value="first">First</option>       	
+        </select>
+    </form>
+
+    <input type="button" class="add-row" value="Add New Feature">
+
+	<br>
+	<hr>
+		<h4 style="color: white">Economy Class</h4>
+		<table class="table table-bordered" style="color: white;" id="econtable">
+			<thead>
+				<tr>
+					<td style="width: 5vw; align-self: center;">Select</td>
+					<td>Seat Feature</td>
+				</tr>
+			</thead>
+			<tbody contenteditable style="text-align: center;background-color: green;">
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;" id="tfeature">Reclining</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Eating Tray</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Power Ports</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Adjustable headrest</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Slimline Seating</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+    	<button type="button" class="delete-row" style=" float: right; height: 30px; color: green;">Delete Row</button>
+	
+	<br><hr>
+		<h4 style="color: white">Business Class</h4>
+
+		<table class="table table-bordered" style="color: white;" id="busitable">
+			<thead>
+				<tr>
+					<td style="width: 5vw; align-self: center;">Select</td>
+					<td>Seat Feature</td>
+				</tr>
+			</thead>
+			<tbody contenteditable style="text-align: center;background-color: green;">
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Reclining</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Eating Tray</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Power Ports</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Adjustable headrest</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Slimline Seating</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+    	<button type="button" class="delete-row" class="float-right" style="color: green; float: right; height: 30px;">Delete Row</button>
+
+<br><hr>	
+		<h4 style="color: white">First Class</h4>
+
+		<table class="table table-bordered" style="color: white;" id="firsttable">
+			<thead>
+				<tr>
+					<td style="width: 5vw; align-self: center;">Select</td>
+					<td>Seat Feature</td>
+				</tr>
+			</thead>
+			<tbody contenteditable style="text-align: center;background-color: green;">
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Reclining</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Eating Tray</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Power Ports</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Adjustable headrest</td>
+				</tr>
+				<tr>
+                	<td><input type="checkbox" name="record"></td>
+					<td style="background-color: brown;">Slimline Seating</td>
+				</tr>
+	
+
+
+			</tbody>
+		</table>
+
+
+    	<button type="button" class="delete-row" style=" float: right; height: 30px; color: green;">Delete Row</button>
+    	
+    	<br>
+    	<br>
+    	<hr>
+		<%= link_to 'Wait for Approval',{:action => 'home',:controller => 'static_pages'}, :class => 'button' %>
+					
+</body>		
+</html>

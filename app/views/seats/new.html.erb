@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Seats</title>
+
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 20vw;
+    float: right;
+}
+
+	form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+		border-collapse: collapse;
+		color: white;
+    }
+    table, th, td{
+        border: 2px solid white;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+    th{
+    	color: white;
+    }
+	
+
+	</style>
+
+
+	<script>
+        function validateForm() 
+        {
+            var t1 = document.forms["myForm"]["total_fare"].value;
+            var t2 = document.forms["myForm"]["total_fare2"].value;
+            var t3 = document.forms["myForm"]["total_fare3"].value;
+
+
+            var st1 = document.forms["myForm"]["seat_type"].value;
+            var st2 = document.forms["myForm"]["seat_type2"].value;
+            var st3 = document.forms["myForm"]["seat_type3"].value;
+
+
+            var sc1 = document.forms["myForm"]["seat_capacity"].value;
+            var sc2 = document.forms["myForm"]["seat_capacity2"].value;
+            var sc3 = document.forms["myForm"]["seat_capacity3"].value;  
+
+            var flag = false;
+            var flag1 = false;
+            //alert(y);
+            //alert(z);
+            //alert(typeof y);
+            if (t1 == "" || t2 == "" || t3 == "")
+            {                
+                alert("Total Fare must be filled out");
+                return false;                
+            }
+
+            if (t1 % 1 === 0 || t2 % 1 === 0 || t3 % 1 === 0)
+            {
+            	if (t1 > 0 && t2 > 0 && t3 > 0)
+            	{
+            		flag = true;
+            	}		             	
+	            else
+	                flag = false;   
+            }
+
+            if (flag == false)
+            {
+                alert("Fare Must be an Positive Integer");
+                return false;
+            }
+
+            //----------------------------------------
+
+            if (st1 == "" || st2 == "" || st3 == "")
+            {                
+                alert("Seat Type must be filled out");
+                return false;
+            }
+
+            if (st1 == "economy")
+            {
+            	flag1 = true;
+            }
+            else
+            {
+            	alert("seat_type has to be economy class");
+            	return false;
+            }
+            if (st2 == "first")
+            {
+            	flag1 = true;
+            }
+            else
+            {
+            	alert("seat_type2 has to be first class");
+            	return false;
+            }
+            if (st3 == "business")
+            {
+            	flag1 = true;
+            }
+            else
+            {
+            	alert("total_fare has to be business class");
+            	return false;
+            }
+
+            //------------------------------------------
+            if (sc1 == "" || sc2 == "" || sc3 == "")
+            {                
+                alert("Seat Capacity must be filled out");
+                return false;                
+            }
+
+            if (sc1 % 1 === 0 || sc2 % 1 === 0 || sc3 % 1 === 0)
+            {
+            	if (sc1 > 0 && sc2 > 0 && sc3 > 0)
+            	{
+            		flag = true;
+            	}		             	
+	            else
+	                flag = false;   
+            }
+
+            if (flag == false)
+            {
+                alert("Seat Capacity Must be a Positive Integer");
+                return false;
+            }	
+
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h1 class="well">Update Seats Information</h1>
+		<br>
+
+		<div>
+	        <%= form_tag(seats_create_path, :method => 'post', :name => 'myForm') do %>
+	            <table style="color: white; background-color:green; border-color: white;" class="table table-bordered">
+	            	<thead>	                
+		                <tr>
+		                	<td><%= label_tag(:Flight_id) %></td>
+		                    <td><%= @seat.flight_id %></td>
+		                </tr>
+		                <tr>
+		                	<td><%= label_tag(:Source) %></td>
+		                    <td><%= @source %></td>
+		                </tr>
+		                <tr>
+		                	<td><%= label_tag(:Destination) %></td>
+		                    <td><%= @dest %></td>
+		                </tr>	                
+		                <tr>
+		                	<td><%= label_tag(:Total_seats) %></td>
+		                    <td><%= @total_seats %></td>
+		                </tr>
+		                <tr>
+		                    <td><%= label_tag(:total_fare) %></td>
+		                    <td style="color: black;"><%= text_field_tag(:total_fare, params[:total_fare].try(:html_safe)) %></td>
+		                
+		                    <td><%= label_tag(:seat_type) %></td>
+		                    <td style="color: black;"><%= text_field_tag(:seat_type, params[:seat_type].try(:html_safe)) %></td>
+
+							<td><%= label_tag(:seat_capacity) %></td>
+		                    <td style="color: black;"><%= text_field_tag(:seat_capacity, params[:seat_capacity].try(:html_safe)) %></td>
+
+		                </tr>
+		            </thead>
+	                <tr>
+	                    <td><%= label_tag(:total_fare2) %></td>
+	                    <td style="color: black;"><%= text_field_tag(:total_fare2, params[:total_fare2].try(:html_safe)) %></td>
+	                
+	                    <td><%= label_tag(:seat_type2) %></td>
+	                    <td style="color: black;"><%= text_field_tag(:seat_type2, params[:seat_type2].try(:html_safe)) %></td>
+
+						<td><%= label_tag(:seat_capacity2) %></td>
+	                    <td style="color: black;"><%= text_field_tag(:seat_capacity2, params[:seat_capacity2].try(:html_safe)) %></td>
+	                </tr>
+	                <tr>
+	                    <td><%= label_tag(:total_fare3) %></td>
+	                    <td style="color: black;"><%= text_field_tag(:total_fare3, params[:total_fare3].try(:html_safe)) %></td>
+	                
+	                    <td><%= label_tag(:seat_type3) %></td>
+	                    <td style="color: black;"><%= text_field_tag(:seat_type3, params[:seat_type3].try(:html_safe)) %></td>
+
+						<td><%= label_tag(:seat_capacity3) %></td>
+	                    <td style="color: black;"><%= text_field_tag(:seat_capacity3, params[:seat_capacity3].try(:html_safe)) %></td>
+	                </tr>
+	                
+	                <tr>
+	                    <td style="color: green;"><%= submit_tag "Create Seat", :onclick => "return validateForm();" %></td>
+	                </tr>
+	            </table>
+
+	        <% end %>
+	    </div>
+	</div>
+
+</body>
+
+</html>

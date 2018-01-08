@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Features Here!!!</title>
+<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	tr{
+		color: white;
+	}
+	td{
+		color: orange;
+	}
+</style>
+		
+
+</head>
+<body>
+
+<h1 style="color: white;text-align: center;">Update Seat Features</h1>
+
+<%= link_to 'logout', airline_admin_destroy_path, :class => 'btn btn-primary', :style => "float: right; font-size: 20px;" %>
+
+<%= link_to 'back', flights_new_path, :class => 'btn btn-primary', :style => "float: left; font-size: 20px;" %>
+<br>
+<br><br>
+
+<% check_arr = [] %>
+<% check_arr1 = [] %>
+<% check_arr2 = [] %>
+	<div class="container">
+		<table class="table table-bordered">
+			<thead>
+				<tr style="color: white;background-color: indigo;">
+					<th>Economy Class Features</th>
+					<th>Description</th>
+					<th>Seat Id</th>
+					<th>Add Feature</th>
+					<th>Delete Feature</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @seats.each do |s| %>
+					<% if s.seat_type == "economy" %>
+						
+						<% s.features.each do |f| %>
+							<% if f.description != nil %>
+								<tr>
+									<td><%= f.description %></td>
+
+									<%= form_tag(features_add_path, :method => 'post') do %>
+										<%= hidden_field_tag :id , s.id %>
+										<td style="text-align: center;"><%= s.id %></td>
+										<td><%= text_field_tag :economy1, params[:economy1] %></td>
+										<td style="color: blue;"><%= submit_tag("Add") %></td>
+									<% end %>										
+									
+									<td>
+									<%= link_to 'Delete', action: 'delete', id: f.id, method: :delete %>
+									</td>
+								</tr>
+							<% end %> 
+						<% end %>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+
+
+		<br>
+		<table class="table table-bordered">
+			<thead>
+				<tr style="color: white;background-color: indigo;">
+					<th>Business Class Features</th>
+					<th>Description</th>
+					<th>Seat Id</th>
+					<th>Add Feature</th>
+					<th>Delete Feature</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @seats.each do |s| %>
+					<% if s.seat_type == "business" %>
+												
+						<% s.features.each do |f| %>
+							<% if f.description != nil %>
+								<tr>
+									<td><%= f.description %></td>
+									<%= form_tag(features_add_path, :method => 'post') do %>
+										<%= hidden_field_tag :id , s.id %>
+										<td style="text-align: center;"><%= s.id %></td>
+										<td><%= text_field_tag :economy1, params[:economy1] %></td>
+										<td style="color: blue;"><%= submit_tag("Add") %></td>
+									<% end %>										
+									
+									<td>
+									<%= link_to 'Delete', action: 'delete', id: f.id, method: :delete %>
+									</td>
+								</tr>
+							<% end %> 
+						<% end %>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+
+		<br>
+		<table class="table table-bordered">
+			<thead>
+				<tr style="color: white;background-color: indigo;">
+					<th>First Class Features</th>
+					<th>Description</th>
+					<th>Seat Id</th>
+					<th>Add Feature</th>
+					<th>Delete Feature</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<% @seats.each do |s| %>	
+					<% if s.seat_type == "first" %>												
+						<% s.features.each do |f| %>
+							<% if f.description != nil %>
+								<tr>
+									<td><%= f.description %></td>
+									<%= form_tag(features_add_path, :method => 'post') do %>
+										<%= hidden_field_tag :id , s.id %>
+										<td style="text-align: center;"><%= s.id %></td>
+										<td><%= text_field_tag :economy1, params[:economy1] %></td>
+										<td style="color: blue;"><%= submit_tag("Add") %></td>
+									<% end %>										
+									
+									<td>
+									<%= link_to 'Delete', action: 'delete', id: f.id, method: :delete %>
+									</td>
+								</tr>
+							<% end %> 
+						<% end %>
+					<% end %>
+				<% end %>
+
+			</tbody>
+		</table>
+		<br>
+		
+
+	</div>
+
+</body>
+</html>

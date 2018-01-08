@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seats Information</title>
+	<style>
+		body {
+	    background-image: url("/image1.jpg");
+	}
+
+	.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 20vw
+}
+
+	
+	</style>
+</head>
+<body>
+
+	<div class="container">
+
+		<h1 class="well">Search Results</h1>
+		<br><br><br><br><br>
+		
+		<table class="table table-bordered" style="color: white;">
+			<thead>
+				<tr>
+					<td>From</td>
+					<td>To</td>
+					<td>Departing</td>
+					<td>Seat ID</td>
+					<td>Passenger</td>
+					<td>Total Amount</td>
+					<td>Select Flight</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @found_flight.each do |f| %>
+					<tr>
+						<td style="background-color: magenta;"><%= f.source %></td>
+						<td style="background-color: green;"><%= f.destination %></td>
+						<td style="background-color: red;"><%= f.time_of_travel %></td>
+						<td style="background-color: red;"><%= @check_seat.id %></td>
+						<td style="background-color: red;"><%= @check_seat.seat_type %></td>
+						<td style="background-color: red;"><%= @total_fare %></td>
+						<td> 
+							<%= link_to 'Book Me!',{:action => 'itinerary', id: f.id, seat_id: @check_seat.id, total_fare: @total_fare}, method: 'post' %> 
+						</td>					
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+<!--		
+
+		<table class="table table-bordered" style="color: white;">
+			<thead>
+				<tr>
+					<td>From</td>
+					<td>To</td>
+					<td>Departing</td>
+					<td>Class</td>
+					<td>Passenger</td>
+					<td>Total Amount</td>
+					<td>Select Flight</td>
+				</tr>
+			</thead>
+			<tbody contenteditable>
+				<tr>
+					<td>Lahore</td>
+					<td>Islamabad</td>
+					<td>12-12-12</td>
+					<td style="background-color: brown;">Economy</td>
+					<td style="background-color: blue;">1</td>
+					<td style="background-color: blue;">10000</td>
+					<td><input type="checkbox" name="check" style="margin-left: 50%;"></td>
+				</tr>
+				<tr>
+					<td>Lahore</td>
+					<td>Islamabad</td>
+					<td>12-12-12</td>
+					<td style="background-color: brown;">Economy</td>
+					<td style="background-color: blue;">2</td>
+					<td style="background-color: blue;">20000</td>
+					<td><input type="checkbox" name="check" style="margin-left: 50%;"></td>
+				</tr>
+				<tr>
+					<td>Lahore</td>
+					<td>Islamabad</td>
+					<td>12-12-12</td>
+					<td style="background-color: brown;">First</td>
+					<td style="background-color: blue;">1</td>
+					<td style="background-color: blue;">30000</td>
+					<td><input type="checkbox" name="check" style="margin-left: 50%;"></td>
+				</tr>
+				<tr>
+					<td>Lahore</td>
+					<td>Islamabad</td>
+					<td>12-12-12</td>
+					<td style="background-color: brown;">Business</td>
+					<td style="background-color: blue;">3</td>
+					<td style="background-color: blue;">60000</td>
+					<td><input type="checkbox" name="check" style="margin-left: 50%;"></td>
+				</tr>
+				<tr>
+					<td>Lahore</td>
+					<td>Islamabad</td>
+					<td>12-12-12</td>
+					<td style="background-color: brown;">Economy</td>
+					<td style="background-color: blue;">10</td>
+					<td style="background-color: blue;">100000</td>
+					<td><input type="checkbox" name="check" style="margin-left: 50%;"></td>
+				</tr>
+			</tbody>
+		</table>
+	-->
+
+		<br>
+		<%= link_to 'change search', {:action => 'book'}, :class => 'button' %>
+
+<br><br><br><br><br><br>
+
+
+	</div>
+
+</body>
+</html>

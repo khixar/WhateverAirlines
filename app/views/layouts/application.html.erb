@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Phase1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+
+    <div>
+
+<!--
+    <% flash.each do |key, value| %>
+        <br><br><br>
+        <div class="flash <%= key %>" style="color: white; font-size: 20px; text-align: center;"><%= value %>  
+        </div>
+    <% end %>
+-->
+    </div>
+
+    <%= yield %>    
+  </body>
+
+<footer class="page-footer green center-on-small-only pt-0" style="color: white; font-size: 30px;background-color: white;">
+
+    <!--Footer Links-->
+    <div class="container">
+
+        <!--Grid row-->
+        <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-md-4 mb-3">
+                <h6 class="title font-bold" style="font-size: 20px;"><a href="/static_pages/about">About us</a></h6>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-4 mb-3">
+                <h6 class="title font-bold" style="font-size: 20px;"><a href="/static_pages/help">Help</a></h6>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-4 mb-3">
+                <h6 class="title font-bold" style="font-size: 20px;"><a href="/static_pages/contact">Contact</a></h6>
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <hr class="rgba-white-light" style="margin: 0 10%;">
+
+    </div>
+    <!--/Footer Links-->
+
+</footer>
+<!--/Footer-->
+
+
+</html>

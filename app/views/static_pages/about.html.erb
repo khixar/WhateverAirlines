@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About Us!</title>
+		<style>
+			body {
+			    background-image: url("/image1.jpg");
+			}
+
+			.custom{
+				padding:20px 20px;
+			}
+
+		</style>
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	    	<%= link_to "WhereEver Airlines", {:action => 'home'}, :class => "navbar-brand" %>
+	    </div>
+	   	<ul class="nav navbar-nav"> 
+	      <li class="active">
+	      	<%= link_to "Home", {:action => 'home'} %>
+	      </li>
+	      
+	      <!--
+	      <li>
+	      	<%= link_to "AdminPortal", {:controller => 'airline_admin', :action => 'index'} %>
+	      </li>
+	      <li>		      	
+	      	<%= link_to "ManagerPortal", {:controller => 'airline_manager', :action => 'index'} %>
+		  </li>		  
+	      <li>
+	      	<a href="/airline_admin/index">AdminCheck</a>
+	      </li>
+	      
+	      <li>
+	      	<%= link_to "Book a Flight", {:action => 'book'} %>
+	      </li> -->
+ 	      <ul class="nav navbar-nav navbar-right">
+      		<li style="left: 200%"><a href="/airline_manager/index"><span class="glyphicon glyphicon-log-in"></span> Login Manager</a></li>
+      		<li style="left: 220%"><a href="/airline_admin/index"><span class="glyphicon glyphicon-log-in"></span> Login Admin</a></li>
+    	  </ul>
+
+	     </ul>  
+	  </div>
+</nav>
+
+<div>
+</div>
+
+<div class="container">
+
+<br><br><br>
+
+	<p style="font-size: 20px; color: white;">  
+		Whatever Airlines is a private airline which believes in <i>Customer Satisfaction</i>s.
+	</p>
+
+
+	<img src="/plane.jpg" alt="apple" width="80%" height="40%" style="margin-left: 80px;">
+	<p style="color: white;font-size: 20px; margin-left: 50px;" class="container-fluid">
+		Whatever airlines provides you every comfort so that you can fill our pockets 
+		Thank YOu!
+	</p>
+
+	<img src="/apple.jpg" alt="apple" width="80%" height="40%" style="margin-left: 80px;">
+	
+	<p style="color: white;font-size: 20px; margin-left: 50px;" class="container-fluid">
+		Whatever airlines provides you every comfort so that you can fill our pockets 
+		Thank YOu!
+	</p>
+
+
+</div>
+
+
+</body>
+</html>

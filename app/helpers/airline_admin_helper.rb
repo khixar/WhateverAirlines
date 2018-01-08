@@ -1,0 +1,2 @@
+module AirlineAdminHelper
+end
